@@ -1,8 +1,10 @@
 # 🧠 KnowFlow AI
 
-### Basic AI Knowledge Assistant with Conversational Memory
+### AI Knowledge Assistant with Conversational Memory
 
-**KnowFlow AI** is an end-to-end **Retrieval-Augmented Generation (RAG)** application that transforms PDF documents and Google Sheets into a searchable knowledge base, retrieves relevant information using semantic similarity, and generates grounded answers with **Gemini** while maintaining conversational context within the current session.
+**KnowFlow AI** is an end-to-end **Retrieval-Augmented Generation (RAG)** application that transforms PDF documents and Google Sheets into a searchable knowledge base, retrieves relevant information using semantic similarity, and generates grounded answers with **Gemini**.
+
+The system also supports **session-based conversational memory** and **context-aware query rewriting**, allowing users to ask natural follow-up questions without repeating the full context.
 
 <p align="center">
   <a href="https://knowflowai.streamlit.app/">
@@ -18,56 +20,46 @@
 
 ## 📌 Overview
 
-Modern knowledge assistants become more useful when they can connect user questions to reliable source material while maintaining context across a conversation.
+Traditional LLM applications can generate fluent answers, but they do not necessarily know the content of a user's private or project-specific knowledge base.
 
-**KnowFlow AI** demonstrates this workflow through a modular RAG architecture that combines:
+**KnowFlow AI** addresses this problem by introducing a retrieval layer between the user's question and the language model.
 
-* 📄 PDF document ingestion
-* 📊 Google Sheets knowledge ingestion
-* ✂️ Structured document processing and text chunking
-* 🧠 Semantic embeddings using Hugging Face
-* 🔎 FAISS vector similarity search
-* 💬 Session-based conversational memory
-* 🔄 Context-aware query rewriting
-* 🤖 Grounded response generation with Gemini
-* 📚 Retrieved source inspection
-* 🧪 Separate retrieval and generation evaluation
+The system:
 
-The project is intentionally designed as a **focused AI Knowledge Assistant with conversational memory**, rather than an autonomous agent system.
+* Ingests knowledge from **PDF documents** and **Google Sheets**
+* Converts heterogeneous sources into structured documents
+* Splits documents into overlapping text chunks
+* Generates semantic embeddings using Hugging Face
+* Stores embeddings in a **FAISS** vector index
+* Retrieves the most relevant knowledge using semantic similarity
+* Uses conversation history to understand ambiguous follow-up questions
+* Rewrites contextual queries before retrieval
+* Generates grounded responses using **Gemini**
+* Exposes retrieved source information for inspection
+* Evaluates retrieval and generation separately
 
----
-
-## ✨ Key Features
-
-| Capability            | Implementation                                    |
-| --------------------- | ------------------------------------------------- |
-| Knowledge Ingestion   | PDF + Google Sheets                               |
-| Document Processing   | Structured documents + text chunking              |
-| Embeddings            | `sentence-transformers/all-MiniLM-L6-v2`          |
-| Embedding Dimension   | 384                                               |
-| Vector Store          | FAISS                                             |
-| Retrieval             | Semantic similarity search                        |
-| Default Top-K         | 4                                                 |
-| LLM                   | Gemini                                            |
-| Conversational Memory | Session-based buffer memory                       |
-| Follow-up Handling    | Context-aware query rewriting                     |
-| Grounding             | Generation constrained by retrieved context       |
-| Interface             | Streamlit                                         |
-| Evaluation            | Retrieval + generation + grounding + memory tests |
+The project is intentionally focused on building a **modular AI Knowledge Assistant with conversational memory**, rather than an autonomous agent architecture.
 
 ---
 
-# 🖥️ Interface Preview
+# ✨ Key Features
 
-<p align="center">
-  <img
-    src="assets/knowflow-ai-preview.png"
-    alt="KnowFlow AI Streamlit Interface"
-    width="900"
-  />
-</p>
+| Feature               | Implementation                              |
+| --------------------- | ------------------------------------------- |
+| Knowledge Sources     | PDF + Google Sheets                         |
+| Document Processing   | Structured documents + text chunking        |
+| Embedding Model       | `sentence-transformers/all-MiniLM-L6-v2`    |
+| Embedding Dimension   | 384                                         |
+| Vector Store          | FAISS                                       |
+| Retrieval Strategy    | Semantic similarity search                  |
+| Default Retrieval     | Top 4 chunks                                |
+| Language Model        | Gemini                                      |
+| Conversational Memory | Session-based buffer memory                 |
+| Follow-up Questions   | Context-aware query rewriting               |
+| Grounding             | Retrieved-context-based generation          |
+| Interface             | Streamlit                                   |
+| Evaluation            | Retrieval + generation + grounding + memory |
 
-> Add the final Streamlit screenshot to `assets/knowflow-ai-preview.png` to display the interface preview.
 
 ---
 
@@ -78,29 +70,19 @@ The project is intentionally designed as a **focused AI Knowledge Assistant with
 **Live Application:**
 https://knowflowai.streamlit.app/
 
-The deployed application provides the Streamlit interface for:
+The deployed application allows users to:
 
-* Asking questions about the indexed knowledge base
-* Inspecting retrieved sources
-* Testing conversational follow-up questions
-* Observing context-aware retrieval behavior
+* Ask questions about the indexed knowledge base
+* Retrieve semantically relevant information
+* Inspect retrieved sources
+* Ask conversational follow-up questions
+* Observe context-aware retrieval behavior
 
 ---
 
-# 🏗️ Architecture
+# 🏗️ System Architecture
 
-KnowFlow AI follows a modular RAG pipeline that separates:
-
-1. Knowledge ingestion
-2. Document processing
-3. Embedding generation
-4. Vector indexing
-5. Conversational context
-6. Query rewriting
-7. Semantic retrieval
-8. Context construction
-9. LLM generation
-10. Source inspection
+KnowFlow AI is organized as a modular RAG pipeline where ingestion, indexing, retrieval, conversational context, and generation are handled as separate stages.
 
 ```mermaid
 flowchart TD
@@ -120,59 +102,68 @@ flowchart TD
     G --> K
 
     K --> L[Retrieved Context]
+    K --> O[Retrieved Sources]
+
     L --> M[Gemini]
     M --> N[Grounded Answer]
-
-    K --> O[Retrieved Sources]
 ```
 
 ---
 
-# 🔄 End-to-End Workflow
+# 🔄 End-to-End RAG Workflow
 
 ```text
 PDF / Google Sheets
-        ↓
+        │
+        ▼
 Document Loading
-        ↓
+        │
+        ▼
 Structured Documents
-        ↓
+        │
+        ▼
 Text Chunking
-        ↓
+        │
+        ▼
 Hugging Face Embeddings
-        ↓
+        │
+        ▼
 FAISS Vector Store
-        ↓
+        │
+        ▼
 User Query
-        ↓
+        │
+        ▼
 Conversation Memory
-        ↓
+        │
+        ▼
 Contextual Query Rewriting
-        ↓
+        │
+        ▼
 Semantic Retrieval
-        ↓
+        │
+        ▼
 Retrieved Context
-        ↓
+        │
+        ▼
 Gemini
-        ↓
+        │
+        ▼
 Grounded Answer
-        ↓
+        │
+        ▼
 Retrieved Sources
 ```
 
 ---
 
-# 📚 RAG Pipeline
+# 📚 Knowledge Ingestion
 
-KnowFlow AI separates the **knowledge retrieval process** from the **answer generation process**.
+KnowFlow AI combines structured and unstructured knowledge sources into a single searchable knowledge base.
 
-## 1. Data Ingestion
+## 📄 PDF Knowledge Source
 
-The knowledge base combines two complementary source formats.
-
-### 📄 PDF Knowledge Source
-
-The main unstructured knowledge source is the:
+The main unstructured source is the:
 
 **World Bank Group Annual Report 2025**
 
@@ -183,9 +174,11 @@ The main unstructured knowledge source is the:
 | Size     | Approximately 11.2 MB         |
 | Role     | Unstructured knowledge source |
 
-The PDF is loaded page-by-page while preserving page-level metadata for source inspection.
+The document is loaded page-by-page while preserving page-level metadata for source inspection and retrieval traceability.
 
-### 📊 Google Sheets Knowledge Base
+---
+
+## 📊 Google Sheets Knowledge Base
 
 The structured knowledge source contains:
 
@@ -203,15 +196,15 @@ Source
 Tags
 ```
 
-Combining these sources demonstrates how both structured and unstructured information can be incorporated into a unified retrieval system.
+Using both PDF and spreadsheet data demonstrates how different knowledge formats can be normalized into a unified retrieval pipeline.
 
 ---
 
-# ✂️ 2. Document Processing
+# ✂️ Document Processing
 
-After ingestion, source content is converted into structured documents and divided into smaller overlapping chunks.
+After ingestion, source content is converted into structured documents and divided into overlapping chunks.
 
-### Current Configuration
+### Chunking Configuration
 
 ```text
 chunk_size    = 1000
@@ -224,11 +217,11 @@ The final knowledge base contains:
 373 indexed chunks
 ```
 
-Chunk overlap helps preserve contextual continuity when relevant information spans chunk boundaries.
+The overlap helps preserve contextual continuity when relevant information spans chunk boundaries.
 
 ---
 
-# 🧠 3. Embeddings
+# 🧠 Semantic Embeddings
 
 KnowFlow AI uses the Hugging Face Sentence Transformers model:
 
@@ -236,24 +229,26 @@ KnowFlow AI uses the Hugging Face Sentence Transformers model:
 sentence-transformers/all-MiniLM-L6-v2
 ```
 
-### Configuration
+### Embedding Configuration
 
-| Property            | Value                                    |
-| ------------------- | ---------------------------------------- |
-| Model               | `sentence-transformers/all-MiniLM-L6-v2` |
-| Embedding Dimension | 384                                      |
-| Normalization       | Enabled                                  |
-| Device              | CPU                                      |
+| Property      | Value                                    |
+| ------------- | ---------------------------------------- |
+| Model         | `sentence-transformers/all-MiniLM-L6-v2` |
+| Dimension     | 384                                      |
+| Normalization | Enabled                                  |
+| Device        | CPU                                      |
 
-Each knowledge chunk is converted into a numerical vector representation that captures semantic information for similarity-based retrieval.
+Each knowledge chunk is transformed into a numerical vector representation that captures semantic relationships between text passages.
+
+These vectors are then used for similarity-based retrieval.
 
 ---
 
-# 🔎 4. FAISS Vector Store
+# 🔎 FAISS Retrieval
 
-The generated embeddings are indexed using **FAISS**.
+The generated embeddings are stored in a **FAISS** vector index.
 
-FAISS provides the vector similarity-search layer used to identify knowledge chunks that are semantically relevant to a user's query.
+FAISS provides the similarity-search layer responsible for identifying knowledge chunks that are semantically relevant to the user's query.
 
 ### Retrieval Configuration
 
@@ -267,11 +262,11 @@ The system retrieves up to four relevant chunks before constructing the context 
 
 # 💬 Conversational Memory
 
-KnowFlow AI includes **session-based buffer-style conversational memory**.
+KnowFlow AI supports **session-based buffer-style conversational memory**.
 
-Instead of treating every question as completely independent, the application maintains conversation history during the current session.
+Instead of processing every question independently, the application maintains conversation history within the current session.
 
-This enables follow-up questions such as:
+This allows users to ask follow-up questions such as:
 
 ```text
 User:
@@ -283,26 +278,27 @@ What does it keep?
 
 The second question is ambiguous when considered independently.
 
-KnowFlow AI uses the conversation history to rewrite the follow-up into a more self-contained retrieval query, such as:
+The system uses the conversation history to produce a more self-contained retrieval query:
 
 ```text
 What does buffer-style conversational memory keep
 ```
 
-The rewritten query is then passed through the normal semantic retrieval pipeline.
+The rewritten query is then passed through the standard semantic retrieval pipeline.
 
-This demonstrates the interaction between:
+### This enables:
 
-* Conversation memory
+* Conversation history
 * Context-aware retrieval
-* Query rewriting
 * Follow-up question handling
+* Query rewriting
+* More natural multi-turn interactions
 
 ---
 
-# 🔄 Query Rewriting
+# 🔄 Contextual Query Rewriting
 
-Conversational RAG systems frequently encounter short follow-up questions that lack sufficient context when processed independently.
+One of the challenges in conversational RAG is handling short or ambiguous follow-up questions.
 
 For example:
 
@@ -312,95 +308,94 @@ What is buffer-style memory?
 What does it keep?
 ```
 
-The second question does not explicitly identify what "it" refers to.
+The second question does not explicitly identify what **"it"** refers to.
 
-KnowFlow AI addresses this by using recent conversation history to produce a clearer retrieval query before semantic search.
+KnowFlow AI addresses this by incorporating recent conversation history before performing semantic retrieval.
 
 ### Query Rewriting Flow
 
 ```text
 Conversation History
-        ↓
+        │
+        ▼
 Current User Question
-        ↓
+        │
+        ▼
 Contextual Query Rewriting
-        ↓
+        │
+        ▼
+Self-Contained Retrieval Query
+        │
+        ▼
 Semantic Retrieval
-        ↓
+        │
+        ▼
 Relevant Knowledge
 ```
 
-Query rewriting improves retrieval for ambiguous conversational follow-ups without changing the underlying knowledge base.
+The underlying knowledge base does not need to change. Only the retrieval query is made more explicit.
 
 ---
 
 # 🎯 Grounded Generation
 
-After retrieving relevant chunks, KnowFlow AI constructs a context and passes it to Gemini.
-
-The generation flow is:
+After retrieval, the selected knowledge chunks are assembled into a context that is provided to Gemini.
 
 ```text
-User Query
-    ↓
-Retrieve Relevant Chunks
-    ↓
-Build Context
-    ↓
+User Question
+      │
+      ▼
+Semantic Retrieval
+      │
+      ▼
+Relevant Chunks
+      │
+      ▼
+Context Construction
+      │
+      ▼
 Gemini
-    ↓
+      │
+      ▼
 Grounded Answer
 ```
 
-The generation layer is instructed to answer using the provided document context rather than relying on unrelated outside knowledge.
+The generation layer is instructed to answer using the retrieved knowledge context rather than relying on unrelated outside information.
 
-When the requested information is not supported by the retrieved knowledge, the system can indicate that the information was not found in the provided knowledge base.
+When the requested information is not supported by the available knowledge, the system can indicate that the information was not found in the provided knowledge base.
 
-This approach is designed to **reduce unsupported responses**.
-
-> **Important:** Grounding does not guarantee that hallucinations are completely eliminated. It means that the generation process is constrained by the retrieved knowledge context.
+> **Important:** Grounding does not guarantee that hallucinations are completely eliminated. It means that the generation process is constrained by retrieved knowledge rather than intentionally relying on unrelated external knowledge.
 
 ---
 
-# 📦 Knowledge Base
+# 📦 Knowledge Base Summary
 
-The final FAISS knowledge base contains:
-
-```text
-373 indexed chunks
-```
-
-### Retrieval Configuration
-
-```text
-Embedding Model:
-sentence-transformers/all-MiniLM-L6-v2
-
-Embedding Dimension:
-384
-
-Chunk Size:
-1000
-
-Chunk Overlap:
-150
-
-Default Top-K:
-4
-```
+| Component           | Configuration                            |
+| ------------------- | ---------------------------------------- |
+| Embedding Model     | `sentence-transformers/all-MiniLM-L6-v2` |
+| Embedding Dimension | 384                                      |
+| Chunk Size          | 1000                                     |
+| Chunk Overlap       | 150                                      |
+| Indexed Chunks      | 373                                      |
+| Default Top-K       | 4                                        |
+| Vector Store        | FAISS                                    |
 
 ---
 
-# 🧪 Evaluation
+# 🧪 Evaluation Strategy
 
-KnowFlow AI evaluates different components of the RAG pipeline separately:
+KnowFlow AI evaluates different components of the RAG pipeline independently.
 
-1. Retrieval
-2. Generation
-3. Grounding behavior
-4. Conversational memory
+The evaluation covers:
 
-This separation avoids presenting a single misleading "accuracy" number for a system whose components measure different behaviors.
+1. **Retrieval**
+2. **Generation**
+3. **Grounding behavior**
+4. **Conversational memory**
+
+This separation is important because retrieval quality and generation success measure different aspects of a RAG system.
+
+The project therefore avoids presenting a single misleading **"overall accuracy"** number.
 
 ---
 
@@ -412,24 +407,22 @@ The retrieval evaluation contains:
 20 evaluation questions
 ```
 
-### Results
+## Results
 
 | Metric               |             Result |
 | -------------------- | -----------------: |
 | Expected Topic Hit@1 |  **16 / 20 — 80%** |
 | Expected Topic Hit@4 | **20 / 20 — 100%** |
 
-### Understanding the Metrics
+### Hit@1
 
-#### Hit@1
-
-Measures whether the expected topic was the top retrieved topic.
+Measures whether the expected topic was the top retrieved result.
 
 ```text
 16 / 20 = 80%
 ```
 
-#### Hit@4
+### Hit@4
 
 Measures whether the expected topic appeared within the top four retrieved results.
 
@@ -443,7 +436,7 @@ Measures whether the expected topic appeared within the top four retrieved resul
 
 # 🤖 Generation Evaluation
 
-Generation was evaluated separately from retrieval.
+Generation was evaluated independently from retrieval.
 
 The evaluation included:
 
@@ -451,7 +444,7 @@ The evaluation included:
 20 test questions
 ```
 
-### Results
+## Results
 
 | Metric                  |      Result |
 | ----------------------- | ----------: |
@@ -459,9 +452,9 @@ The evaluation included:
 | Generation Success Rate |    **100%** |
 | Generation Failures     |       **0** |
 
-### Important Interpretation
+### What Does Generation Success Mean?
 
-The **Generation Success Rate** measures whether the system successfully generated a response.
+The Generation Success Rate measures whether the system successfully produced a response.
 
 It does **not** measure:
 
@@ -470,7 +463,9 @@ It does **not** measure:
 * Retrieval quality
 * Hallucination rate
 
-There was one temporary model-availability `503` failure during the original evaluation run. The affected case was successfully retried, resulting in the final:
+During the original evaluation run, one temporary model-availability `503` error occurred. The affected case was successfully retried.
+
+The final evaluation result was:
 
 ```text
 20 / 20 successful generations
@@ -480,27 +475,27 @@ There was one temporary model-availability `503` failure during the original eva
 
 # 🛡️ Grounding Tests
 
-The system was explicitly tested with questions outside the provided knowledge base.
+The application was also tested with questions that fall outside the indexed knowledge base.
 
-### Unsupported Question 1
+## Test 1
 
 ```text
 What is the population of Mars?
 ```
 
-The system responded that the information was not found in the provided documents rather than generating an unrelated answer.
+The system indicated that the requested information was not found in the provided documents rather than producing an unrelated answer.
 
-### Unsupported Question 2
+## Test 2
 
 ```text
 What is the capital of Japan?
 ```
 
-The system also indicated that the requested information was not found in the provided documents.
+The system similarly indicated that the requested information was not available in the provided knowledge.
 
-These tests demonstrate the intended **grounding behavior** of the application.
+These tests demonstrate the intended **grounding behavior** of the system.
 
-> The project does not claim to completely eliminate hallucinations. Instead, the generation layer is designed to answer from retrieved context and reduce unsupported responses.
+> The project does not claim that hallucinations are completely eliminated. The goal is to reduce unsupported responses by constraining generation around retrieved knowledge.
 
 ---
 
@@ -519,39 +514,43 @@ World Bank Group Annual Report 2025
 Page 20
 ```
 
-The generated grounded answer identified a:
+The resulting grounded answer identified a:
 
 ```text
 $1.1 billion financing package
 ```
 
-### Complete RAG Flow
+### Retrieval-to-Generation Flow
 
 ```text
 Question
-   ↓
+   │
+   ▼
 Semantic Retrieval
-   ↓
+   │
+   ▼
 Relevant World Bank Content
-   ↓
+   │
+   ▼
 Grounded Context
-   ↓
+   │
+   ▼
 Gemini
-   ↓
+   │
+   ▼
 Answer + Retrieved Source
 ```
 
-This example demonstrates the complete retrieval-to-generation workflow.
+This example demonstrates the complete RAG workflow from user question to retrieved evidence and generated response.
 
 ---
 
 # 🧠 Conversational Memory Example
 
-A tested conversational example:
+The conversational memory workflow was tested using:
 
 ```text
 User:
-
 What is buffer-style conversational memory?
 ```
 
@@ -561,7 +560,7 @@ Follow-up:
 What does it keep?
 ```
 
-The system used conversation history to rewrite the follow-up query:
+The system used conversation history to rewrite the follow-up query as:
 
 ```text
 What does buffer-style conversational memory keep
@@ -569,7 +568,7 @@ What does buffer-style conversational memory keep
 
 The rewritten query successfully retrieved relevant knowledge.
 
-This verifies the interaction between:
+This demonstrates the interaction between:
 
 ```text
 Conversation Memory
@@ -581,7 +580,7 @@ Semantic Retrieval
 
 ---
 
-# 🛠️ Tech Stack
+# 🛠️ Technology Stack
 
 | Technology                         | Purpose                    |
 | ---------------------------------- | -------------------------- |
@@ -589,10 +588,10 @@ Semantic Retrieval
 | Streamlit                          | Web application interface  |
 | LangChain                          | RAG application components |
 | LangChain Community                | Community integrations     |
-| LangChain Hugging Face             | Hugging Face integration   |
+| LangChain Hugging Face             | Embedding integration      |
 | LangChain Text Splitters           | Document chunking          |
 | FAISS                              | Vector similarity search   |
-| Hugging Face Sentence Transformers | Text embeddings            |
+| Hugging Face Sentence Transformers | Semantic embeddings        |
 | `all-MiniLM-L6-v2`                 | Embedding model            |
 | Gemini                             | Answer generation          |
 | Google GenAI                       | Gemini integration         |
@@ -664,7 +663,6 @@ KnowFlow-AI/
 
 ```bash
 git clone https://github.com/AbdelrhmanAkl/KnowFlow-AI.git
-
 cd KnowFlow-AI
 ```
 
@@ -676,7 +674,6 @@ cd KnowFlow-AI
 
 ```bash
 python -m venv venv
-
 venv\Scripts\activate
 ```
 
@@ -684,7 +681,6 @@ venv\Scripts\activate
 
 ```bash
 python3 -m venv venv
-
 source venv/bin/activate
 ```
 
@@ -706,11 +702,11 @@ Create a `.env` file in the project root:
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
-> Never commit API keys, credentials, or other secrets to GitHub.
+> **Security:** Never commit API keys, credentials, or other secrets to GitHub.
 
 ---
 
-# ▶️ Running the Application
+# ▶️ Run the Application
 
 Start the Streamlit application:
 
@@ -718,41 +714,39 @@ Start the Streamlit application:
 python -m streamlit run app.py
 ```
 
-The application will start locally and provide the Streamlit interface for querying the indexed knowledge base.
+The application will launch locally and provide the KnowFlow AI interface.
 
 ---
 
-# 🧭 Usage
+# 🧭 How to Use
 
-The application workflow is straightforward:
-
-### Step 1 — Ask a Question
+### 1. Ask a Question
 
 Enter a question related to the indexed knowledge.
 
-### Step 2 — Contextual Query Rewriting
+### 2. Contextual Query Rewriting
 
-If the question is a conversational follow-up, recent session history can be used to rewrite it into a more self-contained retrieval query.
+If the question is a follow-up, conversation history can be used to make the query more self-contained.
 
-### Step 3 — Semantic Retrieval
+### 3. Semantic Retrieval
 
-KnowFlow AI searches the FAISS vector store for semantically relevant chunks.
+The rewritten query is compared against the FAISS vector index.
 
-### Step 4 — Context Construction
+### 4. Context Construction
 
-The retrieved content is assembled into the context supplied to Gemini.
+The most relevant chunks are assembled into the context supplied to Gemini.
 
-### Step 5 — Answer Generation
+### 5. Answer Generation
 
-Gemini generates an answer based on the retrieved context.
+Gemini generates a response using the retrieved context.
 
-### Step 6 — Source Inspection
+### 6. Source Inspection
 
-Retrieved source information is exposed so users can inspect the supporting knowledge.
+Retrieved source information can be inspected alongside the generated answer.
 
-### Step 7 — Continue the Conversation
+### 7. Continue the Conversation
 
-Follow-up questions can use the existing conversation context through session memory and query rewriting.
+Users can continue asking follow-up questions while the current session maintains conversational context.
 
 ---
 
@@ -760,29 +754,36 @@ Follow-up questions can use the existing conversation context through session me
 
 ## Why RAG?
 
-A conventional LLM can generate answers from its general training knowledge, but that does not guarantee that the answer is based on the user's specific documents.
+A general-purpose LLM can generate answers from its pretrained knowledge, but that does not guarantee that its response is based on the project's specific documents.
 
 RAG introduces an explicit retrieval stage:
 
 ```text
 Knowledge Base
       ↓
-Retrieval
+Semantic Retrieval
       ↓
 Relevant Context
       ↓
 LLM
+      ↓
+Grounded Response
 ```
 
-This allows the application to ground generation in the project's own knowledge sources.
+This provides a controlled mechanism for connecting generation to project-specific knowledge.
 
 ---
 
 ## Why FAISS?
 
-FAISS provides a lightweight local vector indexing and similarity-search layer for the embedding-based retrieval workflow.
+FAISS provides a lightweight local vector indexing and similarity-search solution.
 
-It keeps the architecture relatively simple while providing an effective foundation for semantic search.
+For this portfolio project, it offers a practical balance between:
+
+* Simplicity
+* Performance
+* Local reproducibility
+* Easy integration with the RAG pipeline
 
 ---
 
@@ -794,19 +795,15 @@ The project uses:
 sentence-transformers/all-MiniLM-L6-v2
 ```
 
-with:
+with 384-dimensional embeddings.
 
-```text
-384-dimensional embeddings
-```
-
-The model provides a compact semantic representation suitable for the project's retrieval workload.
+The model provides a compact semantic representation suitable for the project's retrieval workload while keeping the embedding pipeline relatively lightweight.
 
 ---
 
 ## Why Query Rewriting?
 
-Conversational questions are often incomplete when considered independently.
+Conversational questions are often incomplete when processed independently.
 
 For example:
 
@@ -816,15 +813,17 @@ What is buffer-style memory?
 What does it keep?
 ```
 
-Query rewriting resolves this dependency by incorporating conversation context before retrieval.
+The second question depends on the previous conversation.
+
+Query rewriting resolves this dependency by incorporating conversational context before semantic retrieval.
 
 ---
 
 ## Why Session-Based Memory?
 
-The project focuses on conversational context within the current assistant session.
+The project focuses on conversational context within the current application session.
 
-A lightweight buffer-style implementation is sufficient to demonstrate:
+A lightweight buffer-based approach is sufficient to demonstrate:
 
 * Conversation history
 * Follow-up understanding
@@ -836,43 +835,30 @@ without introducing unnecessary persistent-memory infrastructure.
 
 ## Why Separate Retrieval and Generation Evaluation?
 
-Retrieval quality and generation success measure different components of a RAG system.
+Retrieval and generation measure different parts of a RAG system.
 
-A system can:
+For example:
 
-* Retrieve relevant information but generate a poor response.
-* Generate a response successfully while retrieving weak context.
-* Retrieve relevant context and successfully generate a grounded answer.
+* A system may retrieve relevant information but generate a poor response.
+* A system may successfully generate text despite weak retrieval.
+* A system may retrieve relevant context and generate a grounded response.
 
-For that reason, KnowFlow AI reports retrieval and generation results separately rather than presenting a misleading single "answer accuracy" metric.
+Therefore, KnowFlow AI reports retrieval and generation results separately instead of combining them into a single unsupported accuracy metric.
 
 ---
 
-# 📈 Current Evaluation Summary
+# 📈 Evaluation Summary
 
-```text
-Evaluation Questions
-        20
+| Evaluation Area         |      Result |
+| ----------------------- | ----------: |
+| Evaluation Questions    |      **20** |
+| Expected Topic Hit@1    |     **80%** |
+| Expected Topic Hit@4    |    **100%** |
+| Successful Generations  | **20 / 20** |
+| Generation Success Rate |    **100%** |
+| Generation Failures     |       **0** |
 
-Expected Topic Hit@1
-        80%
-
-Expected Topic Hit@4
-        100%
-
-Successful Generations
-        20 / 20
-
-Generation Success Rate
-        100%
-
-Generation Failures
-        0
-```
-
-These numbers describe the tested retrieval and generation behavior of the implemented system.
-
-> They should **not** be interpreted as general-purpose answer accuracy.
+> These results describe the tested behavior of the implemented system. They should **not** be interpreted as general-purpose answer accuracy.
 
 ---
 
@@ -886,32 +872,32 @@ The assistant can provide grounded answers only from the knowledge indexed into 
 
 ### Session-Based Memory
 
-Conversational memory is maintained within the application session rather than through persistent long-term user memory.
+Conversation history is maintained within the current application session rather than through persistent long-term memory.
 
 ### Retrieval Quality
 
-Although the current evaluation achieved:
+The current retrieval evaluation achieved:
 
 ```text
 Hit@1 = 80%
 Hit@4 = 100%
 ```
 
-retrieval quality can still vary depending on query wording, ambiguity, and complexity.
+However, retrieval quality can still vary depending on query wording, ambiguity, and complexity.
 
 ### Generation Quality
 
-A successful generation does not necessarily mean the generated answer is factually correct.
+A successful generation only confirms that the model produced a response.
 
-The current evaluation therefore does not claim a general answer-accuracy percentage.
+It does not guarantee factual correctness or answer quality.
 
 ### Grounding
 
-The system is designed to reduce unsupported answers, but no claim is made that hallucinations are completely eliminated.
+The system is designed to reduce unsupported responses, but grounding does not guarantee the complete elimination of hallucinations.
 
 ### Knowledge Base Updates
 
-Changes to the underlying knowledge sources require the knowledge base to be updated and indexed accordingly.
+Changes to the underlying knowledge sources require the vector knowledge base to be updated and re-indexed.
 
 ---
 
@@ -919,25 +905,26 @@ Changes to the underlying knowledge sources require the knowledge base to be upd
 
 Potential future improvements include:
 
-* Advanced retrieval evaluation datasets
 * Retrieval reranking
-* Improved chunking strategies
 * Hybrid lexical + semantic retrieval
-* More comprehensive answer-quality evaluation
+* More comprehensive retrieval benchmarks
+* Improved chunking strategies
 * Citation-level answer evaluation
+* More rigorous answer-quality evaluation
 * Persistent conversation storage
-* Better handling of long conversational histories
+* Better handling of long conversation histories
 * Additional document formats
-* More advanced knowledge-base update workflows
+* Automated knowledge-base update workflows
 * Retrieval observability and monitoring
+* Production-oriented evaluation and monitoring
 
-These represent future directions rather than components of the current architecture.
+These are **future directions**, not components of the current implementation.
 
 ---
 
 # 🎯 What This Project Demonstrates
 
-KnowFlow AI demonstrates an end-to-end understanding of modern RAG application development:
+KnowFlow AI demonstrates practical experience across the complete RAG application lifecycle:
 
 ```text
 Data Ingestion
@@ -965,7 +952,7 @@ Source Inspection
 Evaluation
 ```
 
-The project focuses on building and evaluating a complete RAG workflow rather than simply connecting an LLM to a chat interface.
+Rather than simply connecting an LLM to a chat interface, the project demonstrates how to build, structure, evaluate, and deploy a complete knowledge-grounded AI application.
 
 ---
 
@@ -987,7 +974,7 @@ https://knowflowai.streamlit.app/
 
 **AI / Machine Learning Engineer**
 
-Focused on:
+Interested in:
 
 * Artificial Intelligence
 * Machine Learning
@@ -996,25 +983,26 @@ Focused on:
 * Retrieval-Augmented Generation
 * AI Application Development
 
-### Links
+### Connect
 
 * GitHub: https://github.com/AbdelrhmanAkl
-* Project Repository: https://github.com/AbdelrhmanAkl/KnowFlow-AI
+* Project: https://github.com/AbdelrhmanAkl/KnowFlow-AI
 * Live Demo: https://knowflowai.streamlit.app/
 
 ---
 
 # ⭐ Final Note
 
-**KnowFlow AI** was built as a practical portfolio project to demonstrate how a knowledge-grounded AI assistant can be designed from data ingestion through retrieval, conversational context, generation, and evaluation.
+**KnowFlow AI** was developed as a practical AI engineering portfolio project demonstrating how a knowledge-grounded assistant can be built from raw knowledge sources through document processing, semantic retrieval, conversational context, LLM generation, and system evaluation.
 
 The project emphasizes:
 
-* **Clear modular architecture**
-* **Semantic retrieval**
+* **Modular RAG architecture**
+* **Semantic knowledge retrieval**
 * **Conversational query rewriting**
-* **Grounded generation**
-* **Source inspection**
-* **Separate and measurable system evaluation**
+* **Grounded response generation**
+* **Retrieved-source inspection**
+* **Separate component-level evaluation**
+* **Transparent reporting of system limitations**
 
-The goal is to demonstrate practical AI engineering skills without making unsupported claims about accuracy, scale, or production performance.
+The objective is to demonstrate practical AI engineering capabilities while avoiding unsupported claims about accuracy, scale, or production performance.
