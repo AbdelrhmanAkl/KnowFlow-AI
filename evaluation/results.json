@@ -1,0 +1,322 @@
+{
+  "project": "KnowFlow-AI",
+  "evaluation_type": "Retrieval Evaluation",
+  "evaluation_dataset": "Evaluation Questions",
+  "knowledge_base": "D:\\_Learning_AI_2026\\KnowFlow-AI\\data\\knowledge_base",
+  "total_questions": 20,
+  "top_k": 4,
+  "metrics": {
+    "Hit@1": {
+      "correct": 16,
+      "total": 20,
+      "rate": 0.8
+    },
+    "Hit@4": {
+      "correct": 20,
+      "total": 20,
+      "rate": 1.0
+    }
+  },
+  "results": [
+    {
+      "test_id": "EVAL-001",
+      "question": "What is Retrieval-Augmented Generation and why is retrieval part of the architecture?",
+      "expected_topic": "Retrieval-Augmented Generation",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Retrieval-Augmented Generation",
+        "Retrieval",
+        "RAG Evaluation",
+        "Vector Search"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-002",
+      "question": "What is the role of chunking before documents are indexed for semantic search?",
+      "expected_topic": "Chunking",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Chunking",
+        "Vector Search",
+        "Retrieval",
+        "Reranking"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-003",
+      "question": "What is an embedding and how is it used in semantic retrieval?",
+      "expected_topic": "Embeddings",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Embeddings",
+        "Similarity Search",
+        "Retrieval",
+        "Vector Search"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-004",
+      "question": "How does cosine similarity compare two embedding vectors?",
+      "expected_topic": "Cosine Similarity",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Cosine Similarity",
+        "Similarity Search",
+        "Embeddings",
+        "Vector Search"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-005",
+      "question": "What is FAISS and what problem does it solve?",
+      "expected_topic": "FAISS",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "FAISS",
+        "Vector Indexes",
+        "Unknown",
+        "Unknown"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-006",
+      "question": "What is the difference between first-stage retrieval and reranking?",
+      "expected_topic": "Reranking",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "retrieved_topics": [
+        "Reranking",
+        "Retrieval",
+        "Retrieval-Augmented Generation",
+        "Vector Search"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-007",
+      "question": "What does grounding mean in a RAG application?",
+      "expected_topic": "Grounding",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "retrieved_topics": [
+        "Grounding",
+        "RAG Evaluation",
+        "Retrieval",
+        "Embeddings"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-008",
+      "question": "What is an LLM and what is it used for during inference?",
+      "expected_topic": "Large Language Models",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Inference",
+        "Large Language Models",
+        "Hallucination",
+        "Prompting"
+      ],
+      "hit_at_1": false,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-009",
+      "question": "How does self-attention help a Transformer build context-aware representations?",
+      "expected_topic": "Self-Attention",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "retrieved_topics": [
+        "Attention",
+        "Transformers",
+        "Self-Attention",
+        "Multi-Head Attention"
+      ],
+      "hit_at_1": false,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-010",
+      "question": "What is multi-head attention and why does a Transformer use multiple heads?",
+      "expected_topic": "Multi-Head Attention",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "retrieved_topics": [
+        "Multi-Head Attention",
+        "Attention",
+        "Transformers",
+        "Self-Attention"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-011",
+      "question": "What is prompting and what can a prompt specify for an LLM?",
+      "expected_topic": "Prompting",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Prompting",
+        "Hallucination",
+        "Inference",
+        "Large Language Models"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-012",
+      "question": "What is hallucination in an LLM application?",
+      "expected_topic": "Hallucination",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Hallucination",
+        "Inference",
+        "Prompting",
+        "Large Language Models"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-013",
+      "question": "What is conversational memory and why is it useful for follow-up questions?",
+      "expected_topic": "Conversational Memory",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Conversational Memory",
+        "Conversation History",
+        "Buffer Memory",
+        "Self-Attention"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-014",
+      "question": "How does buffer-style memory retain conversational context?",
+      "expected_topic": "Buffer Memory",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "retrieved_topics": [
+        "Buffer Memory",
+        "Conversational Memory",
+        "Conversation History",
+        "Self-Attention"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-015",
+      "question": "What is the difference between supervised and unsupervised learning?",
+      "expected_topic": "Supervised Learning",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Unsupervised Learning",
+        "Supervised Learning",
+        "Classification",
+        "AI vs Machine Learning"
+      ],
+      "hit_at_1": false,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-016",
+      "question": "What is overfitting and how can regularization help?",
+      "expected_topic": "Overfitting",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "retrieved_topics": [
+        "Regularization",
+        "Overfitting",
+        "Evaluation",
+        "Language Processing"
+      ],
+      "hit_at_1": false,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-017",
+      "question": "What is the difference between precision and recall?",
+      "expected_topic": "Precision and Recall",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Precision and Recall",
+        "F1 Score",
+        "Conversational Memory",
+        "Cosine Similarity"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-018",
+      "question": "What should be monitored in a production AI system?",
+      "expected_topic": "Monitoring",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "retrieved_topics": [
+        "Monitoring",
+        "Production AI",
+        "AI Systems",
+        "Deployment"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-019",
+      "question": "Why is data quality important for an AI application?",
+      "expected_topic": "Data Quality",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "retrieved_topics": [
+        "Data Quality",
+        "Evaluation",
+        "Deployment",
+        "Evaluation"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    },
+    {
+      "test_id": "EVAL-020",
+      "question": "How should a RAG system evaluate retrieval and generated answers?",
+      "expected_topic": "RAG Evaluation",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Hard",
+      "retrieved_topics": [
+        "RAG Evaluation",
+        "Retrieval-Augmented Generation",
+        "Retrieval",
+        "Reranking"
+      ],
+      "hit_at_1": true,
+      "hit_at_4": true
+    }
+  ]
+}

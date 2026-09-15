@@ -1,0 +1,686 @@
+{
+  "project": "KnowFlow-AI",
+  "evaluation_type": "Generation Evaluation",
+  "evaluation_dataset": "Evaluation Questions",
+  "knowledge_base": "D:\\_Learning_AI_2026\\KnowFlow-AI\\data\\knowledge_base",
+  "top_k": 4,
+  "rate_limit": {
+    "requests_per_minute": 5,
+    "request_interval_seconds": 13,
+    "max_retries": 5,
+    "daily_quota_errors_are_not_retried": true
+  },
+  "total_questions": 20,
+  "evaluated_questions": 20,
+  "successful_generations": 20,
+  "generation_failures": 0,
+  "quota_exhausted": false,
+  "stopped_reason": null,
+  "remaining_questions_not_evaluated": 0,
+  "metrics": {
+    "answer_generation_rate": 1.0
+  },
+  "evaluation_note": "Expected topic mention is a lightweight deterministic signal and must not be interpreted as semantic correctness, factual accuracy, faithfulness, or overall answer quality. Questions skipped because of daily API quota exhaustion are not counted as generation failures.",
+  "results": [
+    {
+      "test_id": "EVAL-001",
+      "question": "What is Retrieval-Augmented Generation and why is retrieval part of the architecture?",
+      "expected_topic": "Retrieval-Augmented Generation",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is Retrieval-Augmented Generation and why is retrieval part of the architecture?",
+      "answer": "**Retrieval-Augmented Generation (RAG)** combines information retrieval with text generation. In a RAG system, relevant external content is retrieved for a user query and supplied as context to a generative model before producing an answer.\n\n**Retrieval is part of the architecture** because it functions as the stage that selects potentially relevant documents or chunks for a user query, providing the necessary context to feed into the generative model.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 36
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 37
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 44
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 40
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-002",
+      "question": "What is the role of chunking before documents are indexed for semantic search?",
+      "expected_topic": "Chunking",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is the role of chunking before documents are indexed for semantic search?",
+      "answer": "Based on the provided documents, chunking divides source documents into smaller passages so they can be indexed and retrieved. This preserves enough context to answer questions while keeping the retrieved passages focused and manageable for the downstream model.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 38
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 40
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 37
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 41
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-003",
+      "question": "What is an embedding and how is it used in semantic retrieval?",
+      "expected_topic": "Embeddings",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is an embedding and how is it used in semantic retrieval?",
+      "answer": "Based on the provided documents:\n\n* **What an embedding is:** An embedding is a numeric vector representation of an input, such as text.\n* **How it is used in semantic retrieval:** In semantic retrieval systems, queries and documents are represented as embeddings (vector representations). The system uses a similarity or distance function to compare the query embedding against document embeddings, allowing it to retrieve content with similar meaning or nearest candidates based on vector relationships rather than relying solely on exact keyword matching.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 39
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 46
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 37
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 40
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-004",
+      "question": "How does cosine similarity compare two embedding vectors?",
+      "expected_topic": "Cosine Similarity",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "How does cosine similarity compare two embedding vectors?",
+      "answer": "Based on the provided documents, cosine similarity compares two embedding vectors by measuring the cosine of the angle between them. It compares the directions of the embeddings and is insensitive to vector magnitude.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 48
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 46
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 39
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 40
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-005",
+      "question": "What is FAISS and what problem does it solve?",
+      "expected_topic": "FAISS",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is FAISS and what problem does it solve?",
+      "answer": "Based on the provided documents, **FAISS** is a library for efficient similarity search and clustering of dense vectors. \n\nIt addresses the need for efficient vector operations by providing multiple index types that can be used to build vector-search components for applications such as semantic retrieval.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 45
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 47
+        },
+        {
+          "source": "world_bank_group_annual_report_2025.pdf",
+          "page": 64,
+          "row": null
+        },
+        {
+          "source": "world_bank_group_annual_report_2025.pdf",
+          "page": 64,
+          "row": null
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-006",
+      "question": "What is the difference between first-stage retrieval and reranking?",
+      "expected_topic": "Reranking",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "generation_status": "success",
+      "rewritten_query": "What is the difference between first-stage retrieval and reranking?",
+      "answer": "Based on the provided documents, the difference between first-stage retrieval and reranking is:\n\n* **First-stage retrieval (or search):** The initial, fast search step that selects an initial set of candidate documents or passages relevant to a user query.\n* **Reranking:** A second-stage retrieval step that takes that initial set of candidate passages and reorders them using a more targeted relevance model or scoring method to improve the final context ordering.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 41
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 37
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 36
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 40
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-007",
+      "question": "What does grounding mean in a RAG application?",
+      "expected_topic": "Grounding",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "generation_status": "success",
+      "rewritten_query": "What does grounding mean in a RAG application?",
+      "answer": "In a RAG system, grounding means generating an answer using retrieved or otherwise supplied evidence rather than relying solely on the model's internal learned knowledge. A grounded application should also make the relationship between the evidence and the response clear when appropriate.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 42
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 44
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 37
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 39
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-008",
+      "question": "What is an LLM and what is it used for during inference?",
+      "expected_topic": "Large Language Models",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is an LLM and what is it used for during inference?",
+      "answer": "Based on the provided documents:\n\n* **What an LLM is:** A large language model (LLM) is a neural language model trained on large amounts of text to learn statistical patterns useful for language tasks. Modern LLMs typically use Transformer-based architectures to generate or transform text from an input context.\n* **What happens during inference:** Inference is the process of running a trained language model on an input to produce output tokens or scores.",
+      "answer_present": true,
+      "expected_topic_mentioned": false,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 35
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 29
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 43
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 34
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-009",
+      "question": "How does self-attention help a Transformer build context-aware representations?",
+      "expected_topic": "Self-Attention",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "generation_status": "success",
+      "rewritten_query": "How does self-attention help a Transformer build context-aware representations?",
+      "answer": "Based on the provided documents, self-attention helps build context-aware representations by computing relationships among positions within the same sequence. Each position uses information from other positions to form its representation, with the attention weights determined from learned query, key, and value projections.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 31
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 30
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 32
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 33
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-010",
+      "question": "What is multi-head attention and why does a Transformer use multiple heads?",
+      "expected_topic": "Multi-Head Attention",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "generation_status": "success",
+      "rewritten_query": "What is multi-head attention and why does a Transformer use multiple heads?",
+      "answer": "Based on the provided document, **multi-head attention** runs several attention operations in parallel using different learned projections and then combines their outputs. \n\nA model uses multiple heads because it allows it to **represent different types of relationships in parallel**.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 33
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 31
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 30
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 32
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-011",
+      "question": "What is prompting and what can a prompt specify for an LLM?",
+      "expected_topic": "Prompting",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is prompting and what can a prompt specify for an LLM?",
+      "answer": "Based on the provided documents:\n\n**Prompting** means providing an input instruction, question, context, or other structured text that guides a large language model (LLM) toward a desired response.\n\nPrompt design can specify:\n* The task\n* Constraints\n* Relevant context\n* Output format",
+      "answer_present": false,
+      "expected_topic_mentioned": false,
+      "retrieved_sources": [],
+      "error": null
+    },
+    {
+      "test_id": "EVAL-012",
+      "question": "What is hallucination in an LLM application?",
+      "expected_topic": "Hallucination",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is hallucination in an LLM application?",
+      "answer": "Hallucination in an LLM application refers to generated content that is unsupported, incorrect, or fabricated relative to the intended task or available evidence. \n\nWhile techniques such as retrieval, constrained prompting, source attribution, validation, and evaluation can help reduce or detect hallucinations, no single technique guarantees their complete elimination.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 43
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 35
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 34
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 29
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-013",
+      "question": "What is conversational memory and why is it useful for follow-up questions?",
+      "expected_topic": "Conversational Memory",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is conversational memory and why is it useful for follow-up questions?",
+      "answer": "Based on the provided documents:\n\n* **What it is:** Conversational memory is the mechanism by which an assistant retains selected information from earlier turns so that later responses can use relevant context. It can be implemented through recent conversation history, summaries, stored facts, or other explicit state.\n* **Why it is useful for follow-up questions:** Follow-up questions often omit information because users expect the assistant to understand the preceding discussion. Retaining relevant conversation history allows the system to resolve references and interpret short follow-up queries in context.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 49
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 50
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 51
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 32
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-014",
+      "question": "How does buffer-style memory retain conversational context?",
+      "expected_topic": "Buffer Memory",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "generation_status": "success",
+      "rewritten_query": "How does buffer-style memory retain conversational context?",
+      "answer": "Buffer-style memory retains conversational context by keeping a sequence of recent conversation messages and supplying them as context to subsequent interactions.",
+      "answer_present": true,
+      "expected_topic_mentioned": false,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 51
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 49
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 50
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 32
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-015",
+      "question": "What is the difference between supervised and unsupervised learning?",
+      "expected_topic": "Supervised Learning",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is the difference between supervised and unsupervised learning?",
+      "answer": "Based on the provided documents:\n\n* **Supervised learning** uses data where the desired target label or value is known. It trains a model to learn a mapping from input features to target outputs so it can make predictions for unseen examples.\n* **Unsupervised learning** works with data *without* provided target labels. Instead of making predictions based on known targets, it seeks to find useful structures in the inputs through tasks such as clustering, dimensionality reduction, and representation learning.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 7
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 6
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 8
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 5
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-016",
+      "question": "What is overfitting and how can regularization help?",
+      "expected_topic": "Overfitting",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "generation_status": "success",
+      "rewritten_query": "What is overfitting and how can regularization help?",
+      "answer": "Based on the provided documents:\n\n* **Overfitting** occurs when a model learns patterns that are too specific to the training data, including noise or accidental relationships, resulting in worse performance on unseen data than on training data.\n* **Regularization** helps by adding a constraint or penalty that discourages overly complex model solutions. When appropriately selected, it can help reduce overfitting (with L1 and L2 regularization being common examples).",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 12
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 11
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 10
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 24
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-017",
+      "question": "What is the difference between precision and recall?",
+      "expected_topic": "Precision and Recall",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "What is the difference between precision and recall?",
+      "answer": "Based on the provided documents:\n\n* **Precision** is the fraction of predicted positive cases that are actually positive.\n* **Recall** is the fraction of actual positive cases that the model successfully identifies.\n\nThey capture different aspects of classification performance: precision measures how accurate the model's positive predictions are, while recall measures how well the model finds all the actual positive cases.",
+      "answer_present": true,
+      "expected_topic_mentioned": false,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 13
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 14
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 49
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 48
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-018",
+      "question": "What should be monitored in a production AI system?",
+      "expected_topic": "Monitoring",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Medium",
+      "generation_status": "success",
+      "rewritten_query": "What should be monitored in a production AI system?",
+      "answer": "Based on the provided documents, monitoring in a production AI system can cover:\n\n* **System & Performance Metrics:** Availability, latency, throughput, errors, and resource consumption.\n* **Data & Model Metrics:** Data quality, input distributions, output behavior, and task-specific quality signals.\n\nAdditionally, monitoring should be connected to actionable alerts and a defined response process.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 53
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 56
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 3
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 52
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-019",
+      "question": "Why is data quality important for an AI application?",
+      "expected_topic": "Data Quality",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Easy",
+      "generation_status": "success",
+      "rewritten_query": "Why is data quality important for an AI application?",
+      "answer": "Data quality is important because an AI system's quality depends strongly on the quality and suitability of its input data. Issues such as missing values, duplicates, inconsistent formats, label errors, stale content, and distribution shifts can degrade retrieval, predictions, or generated responses.",
+      "answer_present": true,
+      "expected_topic_mentioned": true,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 54
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 10
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 52
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 55
+        }
+      ]
+    },
+    {
+      "test_id": "EVAL-020",
+      "question": "How should a RAG system evaluate retrieval and generated answers?",
+      "expected_topic": "RAG Evaluation",
+      "expected_source_type": "Knowledge Base",
+      "difficulty": "Hard",
+      "generation_status": "success",
+      "rewritten_query": "How should a RAG system evaluate retrieval and generated answers?",
+      "answer": "Based on the provided documents, a RAG system should evaluate retrieval and generated answers as follows:\n\n* **Retrieval:** Assessed by evaluating whether relevant evidence is retrieved.\n* **Generated Answers (Generation):** Assessed for correctness, relevance, faithfulness to the supplied context, and appropriate handling of insufficient evidence.",
+      "answer_present": true,
+      "expected_topic_mentioned": false,
+      "retrieved_sources": [
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 44
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 36
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 37
+        },
+        {
+          "source": "google_sheet:1GONF_2lzc8co_QCxYyaF2WK0sHYpR1oYCrd6TkXvYhg",
+          "page": null,
+          "row": 41
+        }
+      ]
+    }
+  ]
+}
